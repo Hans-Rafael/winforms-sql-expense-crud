@@ -36,6 +36,14 @@ namespace ExpenseTracker
 
             dgvExpenses.DataSource = table;// Asignar el DataTable como fuente de datos del DataGridView
 
+            // Formatear las columnas del DataGridView
+            if (dgvExpenses.Columns.Count > 0)
+            {
+                dgvExpenses.Columns["Amount"].DefaultCellStyle.Format = "C2";
+                dgvExpenses.Columns["ExpenseDate"].HeaderText = "Expense Date";
+                dgvExpenses.Columns["IsPaid"].HeaderText = "Is Paid";
+            }
+
             // Calcular el total sumando la columna Amount
             decimal total = 0;
             foreach (DataRow row in table.Rows)
@@ -122,8 +130,8 @@ namespace ExpenseTracker
             txtDescription.Text = row.Cells["Description"].Value?.ToString() ?? "";
             cboCategory.SelectedItem = row.Cells["Category"].Value?.ToString();
             numAmount.Value = Convert.ToDecimal(row.Cells["Amount"].Value);
-            dtpDate.Value = Convert.ToDateTime(row.Cells["ExpenseDate"].Value);
-            chkPaid.Checked = Convert.ToBoolean(row.Cells["IsPaid"].Value);
+            dtpDate.Value = Convert.ToDateTime(row.Cells["Expense Date"].Value);
+            chkPaid.Checked = Convert.ToBoolean(row.Cells["Is Paid"].Value);
 
         }
 
@@ -142,6 +150,7 @@ namespace ExpenseTracker
                     "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
 
             using var conn = new SqlConnection(_connectionString);
             string query = @"
