@@ -180,13 +180,13 @@
             dgvExpenses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvExpenses.Location = new Point(39, 354);
             dgvExpenses.Margin = new Padding(4);
-            dgvExpenses.MultiSelect = false;
             dgvExpenses.Name = "dgvExpenses";
             dgvExpenses.ReadOnly = true;
             dgvExpenses.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvExpenses.Size = new Size(1006, 210);
             dgvExpenses.TabIndex = 10;
             dgvExpenses.CellClick += dgvExpenses_CellClick;
+            dgvExpenses.SelectionChanged += dgvExpenses_SelectionChanged;
             // 
             // lblTotal
             // 

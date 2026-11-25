@@ -11,6 +11,8 @@ namespace ExpenseTracker
 
         private int _selectedId = 0; // <-- Esta línea es la que guarda el Id de la fila seleccionada
 
+        private decimal _totalAmount = 0; // Variable para almacenar el total de los gastos
+
         public Form1()
         { // Constructor que inicializa el formulario y sus componentes
             InitializeComponent();
@@ -40,7 +42,9 @@ namespace ExpenseTracker
             {
                 total += Convert.ToDecimal(row["Amount"]);
             }
-            lblTotal.Text = $"Total: {total:C2}";
+            //lblTotal.Text = $"Total: {total:C2}";
+            _totalAmount = total;
+            lblTotal.Text = $"Total: {_totalAmount:C2}";
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -197,6 +201,26 @@ namespace ExpenseTracker
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             LoadExpenses(txtSearch.Text.Trim());
+        }
+
+        private void dgvExpenses_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvExpenses.SelectedRows.Count > 1)
+            {
+                decimal selectedTotal = 0;
+                foreach (DataGridViewRow row in dgvExpenses.SelectedRows)
+                {
+                    if (row.Cells["Amount"].Value != null)
+                    {
+                        selectedTotal += Convert.ToDecimal(row.Cells["Amount"].Value);
+                    }
+                }
+                lblTotal.Text = $"Total: {_totalAmount:C2}  |  Selected ({dgvExpenses.SelectedRows.Count}): {selectedTotal:C2}";
+            }
+            else
+            {
+                lblTotal.Text = $"Total: {_totalAmount:C2}";
+            }
         }
     }
 }
