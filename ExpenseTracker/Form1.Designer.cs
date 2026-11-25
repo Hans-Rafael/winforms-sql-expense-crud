@@ -116,12 +116,13 @@
             btnSave.TabIndex = 5;
             btnSave.Text = "save";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // btnUpdate
             // 
             btnUpdate.BackColor = SystemColors.HotTrack;
             btnUpdate.ForeColor = SystemColors.Control;
-            btnUpdate.Location = new Point(214, 197);
+            btnUpdate.Location = new Point(384, 197);
             btnUpdate.Margin = new Padding(4);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(96, 32);
@@ -144,13 +145,14 @@
             // btnClear
             // 
             btnClear.BackColor = SystemColors.Info;
-            btnClear.Location = new Point(393, 197);
+            btnClear.Location = new Point(203, 197);
             btnClear.Margin = new Padding(4);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(96, 32);
             btnClear.TabIndex = 8;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // txtSearch
             // 
@@ -176,6 +178,7 @@
             dgvExpenses.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvExpenses.Size = new Size(1006, 210);
             dgvExpenses.TabIndex = 10;
+            dgvExpenses.CellClick += dgvExpenses_CellClick;
             // 
             // lblTotal
             // 
