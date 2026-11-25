@@ -183,7 +183,7 @@
             dgvExpenses.Name = "dgvExpenses";
             dgvExpenses.ReadOnly = true;
             dgvExpenses.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvExpenses.Size = new Size(1006, 210);
+            dgvExpenses.Size = new Size(1063, 210);
             dgvExpenses.TabIndex = 10;
             dgvExpenses.CellClick += dgvExpenses_CellClick;
             dgvExpenses.SelectionChanged += dgvExpenses_SelectionChanged;
@@ -192,13 +192,13 @@
             // 
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTotal.Location = new Point(949, 590);
+            lblTotal.Location = new Point(800, 594);
             lblTotal.Margin = new Padding(4, 0, 4, 0);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(93, 21);
             lblTotal.TabIndex = 11;
             lblTotal.Text = "Total: $0.00";
-            lblTotal.TextAlign = ContentAlignment.BottomRight;
+            lblTotal.TextAlign = ContentAlignment.BottomCenter;
             // 
             // label1
             // 
@@ -249,7 +249,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1072, 673);
+            ClientSize = new Size(1129, 673);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);

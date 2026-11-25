@@ -132,8 +132,8 @@ namespace ExpenseTracker
             txtDescription.Text = row.Cells["Description"].Value?.ToString() ?? "";
             cboCategory.SelectedItem = row.Cells["Category"].Value?.ToString();
             numAmount.Value = Convert.ToDecimal(row.Cells["Amount"].Value);
-            dtpDate.Value = Convert.ToDateTime(row.Cells["Expense Date"].Value);
-            chkPaid.Checked = Convert.ToBoolean(row.Cells["Is Paid"].Value);
+            dtpDate.Value = Convert.ToDateTime(row.Cells["ExpenseDate"].Value);
+            chkPaid.Checked = Convert.ToBoolean(row.Cells["IsPaid"].Value);
 
         }
 
