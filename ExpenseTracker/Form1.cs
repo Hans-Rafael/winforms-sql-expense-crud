@@ -122,5 +122,81 @@ namespace ExpenseTracker
             chkPaid.Checked = Convert.ToBoolean(row.Cells["IsPaid"].Value);
 
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (_selectedId == 0)
+            {
+                MessageBox.Show("Please select an expense from the table first.", "Notice",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtDescription.Text) || numAmount.Value <= 0)
+            {
+                MessageBox.Show("Please enter a valid description and an amount greater than zero.",
+                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using var conn = new SqlConnection(_connectionString);
+            string query = @"
+        UPDATE Expenses
+        SET Description = @Description,
+            Category = @Category,
+            Amount = @Amount,
+            ExpenseDate = @ExpenseDate,
+            IsPaid = @IsPaid
+        WHERE Id = @Id;";
+
+            using var cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@Id", _selectedId);
+            cmd.Parameters.AddWithValue("@Description", txtDescription.Text.Trim());
+            cmd.Parameters.AddWithValue("@Category", cboCategory.SelectedItem?.ToString() ?? "Other");
+            cmd.Parameters.AddWithValue("@Amount", numAmount.Value);
+            cmd.Parameters.AddWithValue("@ExpenseDate", dtpDate.Value.Date);
+            cmd.Parameters.AddWithValue("@IsPaid", chkPaid.Checked);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+
+            LoadExpenses(txtSearch.Text.Trim());
+            ClearForm();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (_selectedId == 0)
+            {
+                MessageBox.Show("Please select an expense from the table first.", "Notice",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to delete this expense?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes) return;
+
+            using var conn = new SqlConnection(_connectionString);
+            string query = "DELETE FROM Expenses WHERE Id = @Id;";
+
+            using var cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@Id", _selectedId);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+
+            LoadExpenses(txtSearch.Text.Trim());
+            ClearForm();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            LoadExpenses(txtSearch.Text.Trim());
+        }
     }
 }

@@ -61,6 +61,7 @@
             // 
             // cboCategory
             // 
+            cboCategory.Cursor = Cursors.Hand;
             cboCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCategory.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboCategory.FormattingEnabled = true;
@@ -108,6 +109,7 @@
             // btnSave
             // 
             btnSave.BackColor = Color.OliveDrab;
+            btnSave.Cursor = Cursors.Hand;
             btnSave.ForeColor = SystemColors.Control;
             btnSave.Location = new Point(39, 197);
             btnSave.Margin = new Padding(4);
@@ -121,6 +123,7 @@
             // btnUpdate
             // 
             btnUpdate.BackColor = SystemColors.HotTrack;
+            btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.ForeColor = SystemColors.Control;
             btnUpdate.Location = new Point(384, 197);
             btnUpdate.Margin = new Padding(4);
@@ -129,10 +132,12 @@
             btnUpdate.TabIndex = 6;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = false;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
             btnDelete.BackColor = Color.IndianRed;
+            btnDelete.Cursor = Cursors.Hand;
             btnDelete.ForeColor = SystemColors.Control;
             btnDelete.Location = new Point(581, 197);
             btnDelete.Margin = new Padding(4);
@@ -141,10 +146,12 @@
             btnDelete.TabIndex = 7;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClear
             // 
             btnClear.BackColor = SystemColors.Info;
+            btnClear.Cursor = Cursors.Hand;
             btnClear.Location = new Point(203, 197);
             btnClear.Margin = new Padding(4);
             btnClear.Name = "btnClear";
@@ -163,6 +170,7 @@
             txtSearch.PlaceholderText = "Search by description...";
             txtSearch.Size = new Size(331, 29);
             txtSearch.TabIndex = 9;
+            txtSearch.TextChanged += txtSearch_TextChanged;
             // 
             // dgvExpenses
             // 
