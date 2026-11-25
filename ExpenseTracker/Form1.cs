@@ -37,12 +37,14 @@ namespace ExpenseTracker
             dgvExpenses.DataSource = table;// Asignar el DataTable como fuente de datos del DataGridView
 
             // Formatear las columnas del DataGridView
-            if (dgvExpenses.Columns.Count > 0)
-            {
-                dgvExpenses.Columns["Amount"].DefaultCellStyle.Format = "C2";
-                dgvExpenses.Columns["ExpenseDate"].HeaderText = "Expense Date";
-                dgvExpenses.Columns["IsPaid"].HeaderText = "Is Paid";
-            }
+            if (dgvExpenses.Columns["Amount"] is DataGridViewColumn amountCol)
+                amountCol.DefaultCellStyle.Format = "C2";
+
+            if (dgvExpenses.Columns["ExpenseDate"] is DataGridViewColumn dateCol)
+                dateCol.HeaderText = "Expense Date";
+
+            if (dgvExpenses.Columns["IsPaid"] is DataGridViewColumn paidCol)
+                paidCol.HeaderText = "Is Paid";
 
             // Calcular el total sumando la columna Amount
             decimal total = 0;
